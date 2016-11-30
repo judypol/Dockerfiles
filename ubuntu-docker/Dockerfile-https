@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+#将sources.list拷贝到指定的位置（替换ubuntu中原来的）
+COPY . /etc/apt/
+
+# 安装https和libgdiplus
+RUN apt-get update
+RUN apt-get install -y apt-transport-https
+
+RUN apt-get install -y libgdiplus
+RUN cd /usr/lib
+RUN ln -s libgdiplus.so gdiplus.dll
